@@ -238,9 +238,22 @@ with incomplete firmware. Use this configuration only on boards supporting these
 boot settings. Partition-only, Boot1-only and non-eMMC configurations do not
 change boot settings. No `saveenv` is required; these are eMMC device settings.
 
-From `tools/DFU_flash`, place `rootfs_a.ext4`, `rootfs_b.ext4`, `data.ext4` in
-`bin/am62xx-evm/hsfs/images/`, alongside the bootloader images referenced by the
-example. First preview the generated environment:
+From `tools/DFU_flash`, place `rootfs.ext4` and `data.ext4` in
+`bin/am62xx-evm/hsfs/images/`, alongside the bootloader images (`tiboot3.bin`,
+`tispl.bin`, `u-boot.img`) referenced by the example. The example
+`flash-three-partitions.cfg` flashes:
+
+| Image         | Target                      | Attributes |
+| ------------- | --------------------------- | ---------- |
+| `tiboot3.bin` | eMMC Boot0, offset 0x0      | `raw,1,-`  |
+| `tispl.bin`   | eMMC Boot0, offset 0x80000  | `raw,1,-`  |
+| `u-boot.img`  | eMMC Boot0, offset 0x280000 | `raw,1,-`  |
+| `rootfs.ext4` | UDA partition 1 (rootfs_a)  | `part,0,1` |
+| `rootfs.ext4` | UDA partition 2 (rootfs_b)  | `part,0,2` |
+| `data.ext4`   | UDA partition 3 (data)      | `part,0,3` |
+
+The same `rootfs.ext4` is written to both system slots, so A and B start with
+an identical root filesystem. First preview the generated environment:
 
 ```bash
 python3 dfu_flash.py -d am62xx-evm -t hsfs \
@@ -248,8 +261,9 @@ python3 dfu_flash.py -d am62xx-evm -t hsfs \
     --repartition-emmc --dry-run
 ```
 
-Slots A and B may be initialized with identical system images. Image filenames
-determine DFU alternate names; GPT partition names are fixed by the layout.
+Image filenames determine DFU alternate names; when the same file is listed
+twice (as `rootfs.ext4` is here), a unique alternate name is generated
+automatically. GPT partition names are fixed by the layout.
 Legacy custom configurations still target the same partition numbers, regardless
 of their filenames. Existing image files are not renamed by the tool. Regenerate
 `uEnv.txt` with the updated configuration rather than editing it manually.
