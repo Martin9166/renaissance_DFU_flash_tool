@@ -1,0 +1,40 @@
+2023-08-29 17:13:21 INFO: Starting the flashing tool
+2023-08-29 17:13:21 INFO: Validating the requirements before flashing...
+2023-08-29 17:13:21 INFO: Validated the CLI arguments and the paths to the DFU boot binaries
+2023-08-29 17:13:21 INFO: Parsing the flash configuration file {C:\ti\uboot-flash-writer\bin\am62xx-evm\hsfs\flash-files.cfg}...
+2023-08-29 17:13:21 INFO: Found 4 flash images
+<<DFU_FLASH_CONF
+------- -------------------------------------- --------- -------- -----
+    Alt Path                                        Size   Offset Media
+------- -------------------------------------- --------- -------- -----
+tiboot3 bin\am62xx-evm\hsfs\images\tiboot3.bin    332430      0x0 EMMC
+  tispl bin\am62xx-evm\hsfs\images\tispl.bin      961988  0x80000 EMMC
+ u-boot bin\am62xx-evm\hsfs\images\u-boot.img     897880 0x280000 EMMC
+ rootfs bin\am62xx-evm\hsfs\images\rootfs.img  475078656      0x0 EMMC
+------- -------------------------------------- --------- -------- -----
+DFU_FLASH_CONF
+2023-08-29 17:13:21 INFO: Found 4 boot images
+<<DFU_BOOT_CONF
+---------- -------------------------------------------------------- ------
+       Alt Path                                                       Size
+---------- -------------------------------------------------------- ------
+bootloader C:\ti\uboot-flash-writer\bin\am62xx-evm\hsfs\tiboot3.bin 333163
+ tispl.bin C:\ti\uboot-flash-writer\bin\am62xx-evm\hsfs\tispl.bin   960044
+u-boot.img C:\ti\uboot-flash-writer\bin\am62xx-evm\hsfs\u-boot.img  894876
+  uEnv.txt C:\ti\uboot-flash-writer\bin\am62xx-evm\hsfs\uEnv.txt       174
+---------- -------------------------------------------------------- ------
+DFU_BOOT_CONF
+2023-08-29 17:13:21 INFO: Number of USB DFU devices detected: 1
+2023-08-29 17:13:21 INFO: Starting flashing for 1 identified devices
+2023-08-29 17:13:21 INFO: Spawning 1 parallel processes
+2023-08-29 17:13:23 INFO:           1-3.2 Sent! C:\ti\uboot-flash-writer\bin\am62xx-evm\hsfs\tiboot3.bin
+2023-08-29 17:13:25 INFO:           1-3.2 Sent! C:\ti\uboot-flash-writer\bin\am62xx-evm\hsfs\tispl.bin
+2023-08-29 17:13:28 INFO:           1-3.2 Sent! C:\ti\uboot-flash-writer\bin\am62xx-evm\hsfs\u-boot.img
+2023-08-29 17:13:33 INFO:           1-3.2 Sent! C:\ti\uboot-flash-writer\bin\am62xx-evm\hsfs\uEnv.txt
+2023-08-29 17:13:35 INFO:           1-3.2 Sent! bin\am62xx-evm\hsfs\images\tiboot3.bin
+2023-08-29 17:13:36 INFO:           1-3.2 Sent! bin\am62xx-evm\hsfs\images\tispl.bin
+2023-08-29 17:13:38 INFO:           1-3.2 Sent! bin\am62xx-evm\hsfs\images\u-boot.img
+2023-08-29 17:15:08 INFO:           1-3.2 Sent! bin\am62xx-evm\hsfs\images\rootfs.img
+2023-08-29 17:15:08 INFO:           1-3.2 Flashing Successful...
+2023-08-29 17:15:08 INFO: Flashed 1 out of 1 identified devices successfully...
+2023-08-29 17:15:11 INFO: Exiting!!!
